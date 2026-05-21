@@ -10,10 +10,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest]
+        os: [linux-latest]
       fail-fast: false
 
     steps:
     - uses: actions/checkout@v6
 
-         
+    - name: install crosstool
+      run: apt install crosstool-ng
+
+    - name: configure crosstool
+      run: ct-ng sparc-unknown-linux-gnu
+
